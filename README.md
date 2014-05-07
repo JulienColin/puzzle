@@ -1,0 +1,4 @@
+puzzle
+======
+
+Javascript puzzle
