@@ -1,0 +1,12 @@
+{
+	"username" : "Julien",
+	"mode" : "dragdrop",
+    "image": "http://www.nohem.com/blog/wp-content/uploads/2012/11/HKG.jpg",
+    "columns": "4",
+    "rows": "4",
+    "pieceSize" : "130",
+    "doubleclick" : {
+    	"mode" : "youtube",
+    	"id"  : "72__Mdioty8"
+    }
+}

@@ -1,0 +1,2 @@
+<div {{#ifequalsinline draggable 'true' 'draggable="true"'}}{{/ifequalsinline}} class="piece" data-empty="{{empty}}" style="height:{{pieceSize}}px;width:{{pieceSize}}px;top:{{top}}px;left:{{left}}px;background-image:url({{#ifequalsinline empty 'false' imageUrl}}{{/ifequalsinline}});background-size:{{gridWidth}}px {{gridHeight}}px;background-position:-{{left}}px -{{top}}px"></div>
+

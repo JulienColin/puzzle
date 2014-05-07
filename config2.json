@@ -1,0 +1,12 @@
+{
+    "username" : "Gilbert",
+    "mode" : "click",
+    "image": "http://upload.wikimedia.org/wikipedia/commons/c/cb/Hong_kong_bruce_lee_statue_2.jpg",
+    "columns": "5",
+    "rows": "5",
+    "pieceSize" : "100",
+    "doubleclick" : {
+        "mode" : "link",
+        "url"  : "http://www.discoverhongkong.com/fr/index.jsp"
+    }
+}
