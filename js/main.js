@@ -20,6 +20,12 @@ require.config({
     }
 });
 
+// Quel fichier de configuration ?
+var bootstrapScript = document.querySelector("#bootstrap");
+var puzzleConf = "config.json";
+if(bootstrapScript.hasAttribute("data-conf")) {
+    puzzleConf = bootstrapScript.getAttribute("data-conf") + ".json";
+}
 
 // bootstrap app
 require([],function() {

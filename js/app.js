@@ -47,7 +47,7 @@ define(["jquery","hbs!templates/piece","puzzle-click","puzzle-dragdrop","hbsCust
         if($("#puzzle").length > 0) {
             var rootEl = $("#puzzle");
             // Chargement de la configuration et initialisation du plateau
-            $.getJSON("config.json", function(config) {
+            $.getJSON(puzzleConf, function(config) {
                 init(config,rootEl);
             });
         }
