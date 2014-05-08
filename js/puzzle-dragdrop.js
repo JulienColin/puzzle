@@ -55,6 +55,7 @@ define(["puzzleproto","jquery","underscore","hbs!templates/success","hbs!templat
                     piece.addEventListener('dragover', this.handleDragOver, false);
                     piece.addEventListener('dragenter', this.handleDragEnter, false);
                     piece.addEventListener('dragleave', this.handleDragLeave, false);
+                    piece.addEventListener('dragend', this.handleDragEnd, false);
                     piece.addEventListener('drop', this.bindedHandleDrop, false);
                 },this);
             },
@@ -73,6 +74,9 @@ define(["puzzleproto","jquery","underscore","hbs!templates/success","hbs!templat
             },
             handleDragLeave: function(event) {
                 $(this).removeClass("over");
+            },
+            handleDragEnd: function(event) {
+                $(this).removeClass("dragged");
             },
             handleDrop: function(event) {
                 if (event.stopPropagation) {
@@ -100,7 +104,6 @@ define(["puzzleproto","jquery","underscore","hbs!templates/success","hbs!templat
                     if(this.checkSuccess())this.displaySuccessModal();
                 }
                 $(event.currentTarget).removeClass("over");
-                this.draggedElement.removeClass("dragged");
                 return false;
             },
             // Afficher la pop-up indiquant le succès de la partie
@@ -115,6 +118,7 @@ define(["puzzleproto","jquery","underscore","hbs!templates/success","hbs!templat
                             piece.removeEventListener('dragover', this.handleDragOver, false);
                             piece.removeEventListener('dragenter', this.handleDragEnter, false);
                             piece.removeEventListener('dragleave', this.handleDragLeave, false);
+                            piece.removeEventListener('dragend', this.handleDragEnd, false);
                             piece.removeEventListener('drop', this.bindedHandleDrop, false);
                         },this);
                         // Vidage du tableau
