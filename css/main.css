@@ -5,35 +5,48 @@ body {
 }
 
 div#puzzle {
-	position : relative;
-	display: block;
-	float: left;
-	border: solid 5px #000000;
-	-webkit-border-radius: 13px;
-	-moz-border-radius: 13px;
-	border-radius: 13px;
+  position : relative;
+  display: block;
+  float: left;
 }
+
 div.piece {
-	position : absolute;
-	float: left;
+  position : absolute;
+  float: left;
+  -webkit-transition: -webkit-transform 0.2s ease-in-out;
+  -moz-transition: -moz-transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
 }
 
 [draggable] {
   cursor: move;
 }
 
-div.piece.over {
+div.piece.animated:hover {
+  -webkit-transform: scale(1.03);
+  -moz-transform: scale(1.03);
+  -o-transform: scale(1.03);
+  transform: scale(1.03);
+  z-index: 5;
+}
+
+
+div.piece.animated.dragged {
   opacity: 0;
 }
 
+div.piece.animated.over {
+  opacity: 0.8;
+}
+
 .modal {
-	overflow-x: hidden;
-	overflow-y: hidden;
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	z-index: 100;
-	text-align: center;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  text-align: center;
 }
 
 
@@ -63,9 +76,9 @@ div.piece.over {
 }
 
 .modal div.video {
-	height: 100%;
+  height: 100%;
 }
 
 .modal button {
-	font-size: 1.7em;
+  font-size: 0.8em;
 }

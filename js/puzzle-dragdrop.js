@@ -6,6 +6,7 @@ define(["puzzleproto","jquery","underscore","hbs!templates/success","hbs!templat
                 this.rootEl = rootEl;
                 this.table = table;
 
+                this.mode = config.mode;
                 this.imageUrl = config.image;
                 this.pieceSize = config.pieceSize;
                 this.nbColumns = config.columns;
@@ -49,30 +50,36 @@ define(["puzzleproto","jquery","underscore","hbs!templates/success","hbs!templat
                 // Garder une réference sur les fonctions "bindées" est le seul moyen de pouvoir désenregistrer les évenements ensuite
                 this.bindedHandleDragStart = this.handleDragStart.bind(this);
                 this.bindedHandleDrop = this.handleDrop.bind(this);
-                this.bindedHandleDragEnd = this.handleDragEnd.bind(this);
                 _.each(this.rootEl.find("div.piece"),function(piece) {
                     piece.addEventListener('dragstart', this.bindedHandleDragStart, false);
                     piece.addEventListener('dragover', this.handleDragOver, false);
+                    piece.addEventListener('dragenter', this.handleDragEnter, false);
+                    piece.addEventListener('dragleave', this.handleDragLeave, false);
                     piece.addEventListener('drop', this.bindedHandleDrop, false);
-                    piece.addEventListener('dragend', this.bindedHandleDragEnd, false);
                 },this);
             },
             handleDragStart: function(event) {
                 event.dataTransfer.setData('text', event.currentTarget.innerHTML);
                 this.draggedElement = $(event.currentTarget);
-                this.draggedElement.addClass('over');
+                this.draggedElement.addClass('dragged');
             },
             handleDragOver: function(event) {
                 if (event.preventDefault) {
                     event.preventDefault();
                 }
             },
+            handleDragEnter: function(event) {
+                if(!$(this).hasClass("dragged"))$(this).addClass("over");
+            },
+            handleDragLeave: function(event) {
+                $(this).removeClass("over");
+            },
             handleDrop: function(event) {
                 if (event.stopPropagation) {
                     event.stopPropagation();
                 }
                 // On ne fais rien si la colonne de drop est la meme que celle de drag
-                if (this.draggedElement != $(event.currentTarget)) {
+                if (this.draggedElement[0].outerHTML != $(event.currentTarget)[0].outerHTML) {
                     
                     var droppedPiece = $(event.currentTarget);
 
@@ -92,12 +99,9 @@ define(["puzzleproto","jquery","underscore","hbs!templates/success","hbs!templat
                     this.draggedElement.css("left",draggedLeft).css("top",draggedTop);
                     if(this.checkSuccess())this.displaySuccessModal();
                 }
+                $(event.currentTarget).removeClass("over");
+                this.draggedElement.removeClass("dragged");
                 return false;
-            },
-            handleDragEnd: function(event) {
-                _.each(this.rootEl.find("div.piece"),function(piece) {
-                    $(piece).removeClass('over');
-                },this);
             },
             // Afficher la pop-up indiquant le succès de la partie
             displaySuccessModal : function(){
@@ -109,8 +113,9 @@ define(["puzzleproto","jquery","underscore","hbs!templates/success","hbs!templat
                         _.each(this.rootEl.find("div.piece"),function(piece) {
                             piece.removeEventListener('dragstart', this.bindedHandleDragStart, false);
                             piece.removeEventListener('dragover', this.handleDragOver, false);
+                            piece.removeEventListener('dragenter', this.handleDragEnter, false);
+                            piece.removeEventListener('dragleave', this.handleDragLeave, false);
                             piece.removeEventListener('drop', this.bindedHandleDrop, false);
-                            piece.removeEventListener('dragend', this.bindedHandleDragEnd, false);
                         },this);
                         // Vidage du tableau
                         this.rootEl.children().remove();

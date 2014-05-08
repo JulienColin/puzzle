@@ -30,7 +30,7 @@ define(["jquery","hbs!templates/piece","puzzle-click","puzzle-dragdrop","hbsCust
                 table[i] = [];
                 for(var j=0; j < nbColumns; j++){
                     // Templating de la pièce
-                    var piece = $(pieceTemplate({ "top": i * pieceSize, "left" : j * pieceSize, "pieceSize": pieceSize, "imageUrl": imageUrl, "gridWidth": gridWidth, "gridHeight": gridHeight, empty: "false", draggable: (mode === "dragdrop" ? "true" : "false")}));
+                    var piece = $(pieceTemplate({ "top": i * pieceSize, "left" : j * pieceSize, "pieceSize": pieceSize, "imageUrl": imageUrl, "gridWidth": gridWidth, "gridHeight": gridHeight, empty: "false", draggable: (mode === "dragdrop" ? "true" : "false"), "mode" : mode}));
                     table[i].push(piece);
                 }
             }
