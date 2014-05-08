@@ -18,8 +18,11 @@ Configuration :
 
 To test the application : 
 ------------------------------
-simply put the repository content into 'DocumentRoot' of an Apache server or 'root' folder for Nginx. Test gh-pages
+simply put the repository content into 'DocumentRoot' of an Apache server or 'root' folder for Nginx. 
 
+the two given samples can be found on the following urls :
+http://juliencolin.github.io/puzzle/
+http://juliencolin.github.io/puzzle/index2.html
 
 Tested browsers : 
 ------------------------------
