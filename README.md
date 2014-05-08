@@ -18,7 +18,7 @@ Configuration :
 
 To test the application : 
 ------------------------------
-simply put the repository content into 'DocumentRoot' of an Apache server or 'root' folder for Nginx
+simply put the repository content into 'DocumentRoot' of an Apache server or 'root' folder for Nginx. Test gh-pages
 
 
 Tested browsers : 
